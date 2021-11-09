@@ -1,42 +1,57 @@
-// var path = require('path');
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
+const gulp = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+const minify = require('gulp-minify');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('default', function() {
-	gulp.start('bootstrap');
-	gulp.start('scss-theme');
-});
-
-gulp.task('theme', function() {
-	gulp.start('scss-theme');
-});
-
-gulp.task('watch', function() {
-	gulp.watch('scss/**/*.scss', ['scss-theme']);
-});
-
-gulp.task('scss-theme', function() {
-	gulp.src('scss/site/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
-		.pipe(gulp.dest('css/'));
-});
-
-gulp.task('bootstrap', function() {
-	gulp.src('scss/bootstrap/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
-		.pipe(gulp.dest('css/'));
-});
-
-function swallowError (error) {
-	console.log(error.toString());
-	this.emit('end');
+function compileSCSS() {
+	return gulp.src('./scss/**/*.scss')				
+		.pipe(sass().on('error', sass.logError))		
+		.pipe(gulp.dest('./assets/css/'))
+		.pipe(minify())				
+		.pipe(rename({ extname: '.min.css' }))
+		.pipe(gulp.dest('./assets/css/'));		
 }
+
+function generateSourceMapCSS() {
+	return gulp.src(['./assets/css/styles.css','./assets/css/styles.min.css'])				
+    .pipe(sourcemaps.init())    
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest('assets/css/'));
+}
+
+function copyJSFiles() {
+	const jsFiles = [		
+		'./node_modules/bootstrap/dist/js/bootstrap.min.js'
+		, './node_modules/bootstrap/dist/js/bootstrap.min.js.map'		
+	]
+	return gulp.src(jsFiles)
+	.pipe(rename(function (path) {		
+		path.basename = "theme";		
+	}))
+    .pipe(gulp.dest('./assets/js/'));
+}  
+
+function importFontAwesomeFiles() {	
+	return gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*.*')						
+		.pipe(gulp.dest('./assets/fonts/'));		
+}
+
+function copyFontFiles() {
+	return gulp.src('./fonts/**/*.*')						
+		.pipe(gulp.dest('./assets/fonts/'));		
+}
+
+exports.buildCSS = gulp.series(compileSCSS,generateSourceMapCSS)
+exports.buildJS = gulp.series(copyJSFiles)
+exports.buildFont = gulp.series(importFontAwesomeFiles,copyFontFiles) 
+exports.copyFont = gulp.series(copyFontFiles) 
+
+exports.default = gulp.parallel(exports.buildCSS,exports.buildJS,exports.buildFont);
+exports.build = exports.default;
+
+exports.watch = function () {
+	gulp.watch('./scss/**/*.scss', exports.buildCSS);	
+	gulp.watch('./js/**/*.js', exports.buildJS);	
+	gulp.watch('./fonts/**/*.*', exports.copyFont);	
+};

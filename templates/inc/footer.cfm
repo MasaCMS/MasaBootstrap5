@@ -28,7 +28,7 @@
 						<ul class="list-unstyled">
 							<li class="mb-2">
 								<i class="fa fa-arrows-alt mr-1" aria-hidden="true"></i>
-								<a href="##myModal" data-toggle="modal">Sample Modal Window</a>
+								<a href="##" data-bs-toggle="modal" data-bs-target="##myModal">Sample Modal Window</a>
 							</li>
 							<li class="mb-2">
 								<i class="fa fa-plug mr-1" aria-hidden="true"></i>

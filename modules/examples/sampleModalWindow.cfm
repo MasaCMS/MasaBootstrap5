@@ -5,9 +5,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Sample Modal Window</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<h4>This is just a sample&hellip;</h4>
@@ -15,7 +13,7 @@
 					<p>Vestibulum tempor nunc nec felis scelerisque eget elementum erat dignissim. Ut vel ipsum mollis orci venenatis luctus. Aenean vehicula quam vel quam porttitor ac iaculis elit pulvinar. Proin consequat, ipsum eu venenatis semper, justo turpis posuere tortor, ac placerat metus nisl et lectus. Nulla cursus dui id nunc ullamcorper sed semper nisl lobortis. Aliquam erat volutpat. Phasellus arcu ante, imperdiet in ornare sed, laoreet eu massa.</p>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Close</button>
 				</div>
 			</div>
 		</div>

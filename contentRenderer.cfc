@@ -522,34 +522,31 @@
 				<cfset local.feed = variables.$.getBean('feed').loadBy(name=arguments.feedName)>
 				<cfset local.iterator = local.feed.getIterator()>
 
-
-					<cfif local.feed.getIsNew()>
+					<cfif local.feed.getIsNew()>					
 
 						<div class="alert alert-warning alert-dismissible fade show" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
 							The <strong>#HTMLEditFormat(arguments.feedName)#</strong> Content Collection/Local Index does not exist.
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>
 
 					<cfelseif local.iterator.hasNext()>
 
-						<div id="#arguments.cssID#" class="carousel slide" data-ride="carousel" data-interval="#arguments.interval#">
-
+						<div id="#arguments.cssID#" class="carousel slide" <cfif arguments.autoStart>data-bs-ride="carousel"</cfif> data-interval="#arguments.interval#">
 							<!--- Indicators --->
 							<cfif arguments.showIndicators>
-								<ol class="carousel-indicators">
+								<div class="carousel-indicators">
 									<cfset local.iterator.reset()>
 									<cfset local.idx = 0>
 									<cfloop condition="local.iterator.hasNext()">
 										<cfset local.item=iterator.next()>
-										<cfif ListFindNoCase('jpg,jpeg,gif,png', ListLast(local.item.getImageURL(), '.'))>
-											<li data-target="###arguments.cssID#" data-slide-to="#idx#" class="<cfif local.idx eq 0>active</cfif>"></li>
+										<cfif ListFindNoCase('jpg,jpeg,gif,png', ListLast(local.item.getImageURL(), '.'))>											
+											<button type="button" data-bs-target="###arguments.cssID#"data-bs-slide-to="#idx#" <cfif local.idx eq 0>class="active" aria-current="true"</cfif> aria-label="Slide 1"></button>
 											<cfset local.idx++>
 										</cfif>
 									</cfloop>
-								</ol>
-							</cfif>
+								
+								</div>
+							</cfif>					
 
 							<!--- Wrapper for slides --->
 							<div class="carousel-inner">
@@ -558,7 +555,7 @@
 								<cfloop condition="local.iterator.hasNext()">
 									<cfset local.item=iterator.next()>
 									<cfif ListFindNoCase('jpg,jpeg,gif,png', ListLast(local.item.getImageURL(), '.'))>
-										<div class="carousel-item<cfif local.idx eq 0> active</cfif>">
+										<div class="carousel-item<cfif local.idx eq 0> active</cfif>"> 
 
 											<img src="#local.item.getImageURL(argumentCollection=local.imageArgs)#" alt="#HTMLEditFormat(local.item.getTitle())#" class="d-block w-100">
 											<cfif arguments.showCaption>
@@ -587,22 +584,16 @@
 									<a class="carousel-control-next" href="###arguments.cssID#" role="button" data-slide="next">
 										<span class="carousel-control-next-icon" aria-hidden="true"></span>
 										<span class="sr-only">Next</span>
-									</a>
-									<!--- AutoStart --->
-									<cfif arguments.autoStart>
-										<script>jQuery(document).ready(function($){$('###arguments.cssID#').carousel({interval:#arguments.interval#});});</script>
-									</cfif>
-
+									</a>								
+									
 								</cfif>
-
+								
 							<cfelse>
-
+																	
 								<div class="alert alert-warning alert-dismissible fade show" role="alert">
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
 									Your feed has no items <em>with images</em>.
-								</div>
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>								
 
 							</cfif>
 
@@ -617,7 +608,6 @@
 						</div>
 
 					</cfif>
-
 			</cfoutput>
 		</cfsavecontent>
 		<cfreturn local.str />
