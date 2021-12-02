@@ -120,7 +120,7 @@
 		this.subHead4 = "h5";
 
 		// preloader markup for async objects
-		this.preloaderMarkup='<i class="mura-preloader fa fa-refresh fa-spin"></i>';
+		this.preloaderMarkup='<i class="mura-preloader fas fa-sync fa-spin"></i>';
 
 		// nav and list item vars
 		this.navWrapperClass = "mura-nav bg-light p-3 mb-5 border rounded";

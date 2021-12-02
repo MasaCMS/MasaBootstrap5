@@ -56,7 +56,7 @@
 						<input type="text" name="Keywords" id="navKeywords" class="form-control" value="#esapiEncode('html', $.event('keywords'))#" placeholder="#$.rbKey('search.search')#" aria-label="Search">
 						<span class="input-group-btn">
 							<button type="submit" class="btn btn-secondary">
-								<i class="fa fa-search" aria-hidden="true"></i>
+								<i class="fas fa-search" aria-hidden="true"></i>
 								<span class="sr-only">Search</span>
 							</button>
 						</span>

@@ -23,7 +23,7 @@
 				<!--- Content Release Date --->
 					<cfif IsDate($.setDynamicContent($.content('releasedate')))>
 						<li class="list-inline-item">
-							<i class="fa fa-clock-o" aria-hidden="true"></i> #LSDateFormat($.setDynamicContent($.content('releasedate')))#
+							<i class="far fa-clock" aria-hidden="true"></i> #LSDateFormat($.setDynamicContent($.content('releasedate')))#
 						</span>
 					</cfif>
 				<!--- /Content Release Date --->
@@ -31,7 +31,7 @@
 				<!--- Comments --->
 					<cfif commentCount gt 0>
 						<li class="list-inline-item">
-							<i class="fa fa-comments" aria-hidden="true"></i> #commentCount# Comment<cfif commentCount gt 1>s</cfif>
+							<i class="fas fa-comments" aria-hidden="true"></i> #commentCount# Comment<cfif commentCount gt 1>s</cfif>
 						</li>
 					</cfif>
 				<!--- /Comments --->
@@ -39,7 +39,7 @@
 				<!--- Tags --->
 					<cfif ListLen($.content().getTags())>
 						<li class="list-inline-item">
-							<i class="fa fa-tags" aria-hidden="true"></i>
+							<i class="fas fa-tags" aria-hidden="true"></i>
 							<cfloop from="1" to="#ListLen($.content().getTags())#" index="t">
 							#esapiEncode('html', trim(ListGetAt($.content().getTags(), t)))#<cfif t neq ListLen($.content().getTags())>, </cfif>
 							</cfloop>
@@ -50,7 +50,7 @@
 				<!--- Categories --->
 					<cfif itCategories.hasNext()>
 						<li class="list-inline-item">
-							<i class="fa fa-folder-open" aria-hidden="true"></i>
+							<i class="fas fa-folder-open" aria-hidden="true"></i>
 							<cfloop condition="itCategories.hasNext()">
 								<cfset categoryItem = itCategories.next()>
 								#HTMLEditFormat(categoryItem.getName())#</a><cfif itCategories.hasNext()>, </cfif>
@@ -62,7 +62,7 @@
 				<!--- Credits --->
 					<cfif Len($.setDynamicContent($.content('credits')))>
 						<li class="list-inline-item">
-							<i class="fa fa-user" aria-hidden="true"></i> #esapiEncode('html', $.setDynamicContent($.content('credits')))#
+							<i class="fas fa-user" aria-hidden="true"></i> #esapiEncode('html', $.setDynamicContent($.content('credits')))#
 						</li>
 					</cfif>
 				<!--- /Credits --->

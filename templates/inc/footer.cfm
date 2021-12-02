@@ -12,26 +12,26 @@
 						<h4>Contact Info</h4>
 						<ul class="list-unstyled">
 							<li class="mb-2">
-								<i class="fa fa-phone mr-1" aria-hidden="true"></i>
+								<i class="fas fa-phone mr-1" aria-hidden="true"></i>
 								<a href="tel:1-916-608-8608">+1(916)608-8608 <strong>Local</strong></a>
 							</li>
 							<li class="mb-2">
-								<i class="fa fa-phone mr-1" aria-hidden="true"></i>
+								<i class="fas fa-phone mr-1" aria-hidden="true"></i>
 								<a href="tel:1-800-466-7525">+1(800)466-7525 <strong>Toll Free</strong></a>
 							</li>
 							<li class="mb-2">
-								<i class="fa fa-envelope mr-1" aria-hidden="true"></i>
+								<i class="fas fa-envelope mr-1" aria-hidden="true"></i>
 								<a href="mailto:masacms@weareorange.eu">masacms@weareorange.eu</a>
 							</li>
 						</ul>
 
 						<ul class="list-unstyled">
 							<li class="mb-2">
-								<i class="fa fa-arrows-alt mr-1" aria-hidden="true"></i>
+								<i class="fas fa-arrows-alt mr-1" aria-hidden="true"></i>
 								<a href="##" data-bs-toggle="modal" data-bs-target="##myModal">Sample Modal Window</a>
 							</li>
 							<li class="mb-2">
-								<i class="fa fa-plug mr-1" aria-hidden="true"></i>
+								<i class="fas fa-plug mr-1" aria-hidden="true"></i>
 								<a href="https://www.masacms.com">Powered by Masa CMS</a>
 							</li>
 						</ul>
@@ -41,11 +41,11 @@
 						<h4>Follow</h4>
 						<div>
 							<a class="btn btn-sm btn-primary" href="https://github.com/MasaCMS/MasaCMS">
-								<i class="fa fa-lg fa-github" aria-hidden="true"></i>
+								<i class="fab fa-lg fa-github" aria-hidden="true"></i>
 								<span class="sr-only">Masa CMS Github</span>
 							</a>
 							<a class="btn btn-sm btn-primary" href="https://twitter.com/masacms">
-								<i class="fa fa-lg fa-twitter" aria-hidden="true"></i>
+								<i class="fab fa-lg fa-twitter" aria-hidden="true"></i>
 								<span class="sr-only">Masa CMS Twitter</span>
 							</a>
 						</div>
