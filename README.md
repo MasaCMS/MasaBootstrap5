@@ -3,7 +3,7 @@ A [Masa CMS](http://www.masacms.com) theme based on [Bootstrap](http://getbootst
 
 ## Building this project
 This Masa Theme comes with all the CSS en JS file precompiled. 
-If you wish to build the project yourself, then you can do soo with [NPM](https://nodejs.org/).
+If you wish to build the project yourself, then you can do so with [NPM](https://nodejs.org/).
 Make sure NPM is installed. First install the depencies; open a terminal, goto the root folder of this Theme and type:
 
     `npm install`
