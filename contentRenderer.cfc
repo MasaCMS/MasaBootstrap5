@@ -1,34 +1,34 @@
 <!---
-	This file is part of Masa CMS. Masa CMS is based on Mura CMS, and adopts the  
-	same licensing model. It is, therefore, licensed under the Gnu General Public License 
-	version 2 only, (GPLv2) subject to the same special exception that appears in the licensing 
-	notice set out below. That exception is also granted by the copyright holders of Masa CMS 
-	also applies to this file and Masa CMS in general. 
+	This file is part of Masa CMS. Masa CMS is based on Mura CMS, and adopts the
+	same licensing model. It is, therefore, licensed under the Gnu General Public License
+	version 2 only, (GPLv2) subject to the same special exception that appears in the licensing
+	notice set out below. That exception is also granted by the copyright holders of Masa CMS
+	also applies to this file and Masa CMS in general.
 
-	This file has been modified from the original version received from Mura CMS. The 
+	This file has been modified from the original version received from Mura CMS. The
 	change was made on: 2021-07-27
-	Although this file is based on Mura™ CMS, Masa CMS is not associated with the copyright 
-	holders or developers of Mura™CMS, and the use of the terms Mura™ and Mura™CMS are retained 
-	only to ensure software compatibility, and compliance with the terms of the GPLv2 and 
-	the exception set out below. That use is not intended to suggest any commercial relationship 
-	or endorsement of Mura™CMS by Masa CMS or its developers, copyright holders or sponsors or visa versa. 
+	Although this file is based on Mura™ CMS, Masa CMS is not associated with the copyright
+	holders or developers of Mura™CMS, and the use of the terms Mura™ and Mura™CMS are retained
+	only to ensure software compatibility, and compliance with the terms of the GPLv2 and
+	the exception set out below. That use is not intended to suggest any commercial relationship
+	or endorsement of Mura™CMS by Masa CMS or its developers, copyright holders or sponsors or visa versa.
 
 	If you want an original copy of Mura™ CMS please go to murasoftware.com .  
-	For more information about the unaffiliated Masa CMS, please go to masacms.com  
+	For more information about the unaffiliated Masa CMS, please go to masacms.com
 
-	Masa CMS is free software: you can redistribute it and/or modify 
-	it under the terms of the GNU General Public License as published by 
-	the Free Software Foundation, Version 2 of the License. 
-	Masa CMS is distributed in the hope that it will be useful, 
-	but WITHOUT ANY WARRANTY; without even the implied warranty of 
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-	GNU General Public License for more details. 
+	Masa CMS is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, Version 2 of the License.
+	Masa CMS is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License 
-	along with Masa CMS. If not, see <http://www.gnu.org/licenses/>. 
+	You should have received a copy of the GNU General Public License
+	along with Masa CMS. If not, see <http://www.gnu.org/licenses/>.
 
-	The original complete licensing notice from the Mura CMS version of this file is as 
-	follows: 
+	The original complete licensing notice from the Mura CMS version of this file is as
+	follows:
 
 	This file is part of Mura CMS.
 
@@ -522,10 +522,10 @@
 				<cfset local.feed = variables.$.getBean('feed').loadBy(name=arguments.feedName)>
 				<cfset local.iterator = local.feed.getIterator()>
 
-					<cfif local.feed.getIsNew()>					
+					<cfif local.feed.getIsNew()>
 
 						<div class="alert alert-warning alert-dismissible fade show" role="alert">
-							The <strong>#HTMLEditFormat(arguments.feedName)#</strong> Content Collection/Local Index does not exist.
+							The <strong>#encodeForHtml(arguments.feedName)#</strong> Content Collection/Local Index does not exist.
 							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>
 
@@ -539,14 +539,14 @@
 									<cfset local.idx = 0>
 									<cfloop condition="local.iterator.hasNext()">
 										<cfset local.item=iterator.next()>
-										<cfif ListFindNoCase('jpg,jpeg,gif,png', ListLast(local.item.getImageURL(), '.'))>											
+										<cfif ListFindNoCase('jpg,jpeg,gif,png', ListLast(local.item.getImageURL(), '.'))>
 											<button type="button" data-bs-target="###arguments.cssID#"data-bs-slide-to="#idx#" <cfif local.idx eq 0>class="active" aria-current="true"</cfif> aria-label="Slide 1"></button>
 											<cfset local.idx++>
 										</cfif>
 									</cfloop>
-								
+
 								</div>
-							</cfif>					
+							</cfif>
 
 							<!--- Wrapper for slides --->
 							<div class="carousel-inner">
@@ -555,13 +555,13 @@
 								<cfloop condition="local.iterator.hasNext()">
 									<cfset local.item=iterator.next()>
 									<cfif ListFindNoCase('jpg,jpeg,gif,png', ListLast(local.item.getImageURL(), '.'))>
-										<div class="carousel-item<cfif local.idx eq 0> active</cfif>"> 
+										<div class="carousel-item<cfif local.idx eq 0> active</cfif>">
 
-											<img src="#local.item.getImageURL(argumentCollection=local.imageArgs)#" alt="#HTMLEditFormat(local.item.getTitle())#" class="d-block w-100">
+											<img src="#local.item.getImageURL(argumentCollection=local.imageArgs)#" alt="#encodeForHTMLAttribute(local.item.getTitle())#" class="d-block w-100">
 											<cfif arguments.showCaption>
 												<div class="carousel-caption d-none d-md-block p-md-5">
 													<div class="container">
-														<h3><a href="#local.item.getURL()#">#HTMLEditFormat(local.item.getTitle())#</a></h3>
+														<h3><a href="#local.item.getURL()#">#encodeForHtml(local.item.getTitle())#</a></h3>
 														#local.item.getSummary()#
 														<a class="btn btn-primary btn-sm mb-2" href="#local.item.getURL()#">Read More</a>
 													</div>
@@ -584,16 +584,16 @@
 									<a class="carousel-control-next" href="###arguments.cssID#" role="button" data-slide="next">
 										<span class="carousel-control-next-icon" aria-hidden="true"></span>
 										<span class="sr-only">Next</span>
-									</a>								
-									
+									</a>
+
 								</cfif>
-								
+
 							<cfelse>
-																	
+
 								<div class="alert alert-warning alert-dismissible fade show" role="alert">
 									Your feed has no items <em>with images</em>.
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-								</div>								
+								</div>
 
 							</cfif>
 
