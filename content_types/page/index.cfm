@@ -53,7 +53,7 @@
 							<i class="fas fa-folder-open" aria-hidden="true"></i>
 							<cfloop condition="itCategories.hasNext()">
 								<cfset categoryItem = itCategories.next()>
-								#HTMLEditFormat(categoryItem.getName())#</a><cfif itCategories.hasNext()>, </cfif>
+								#encodeForHtml(categoryItem.getName())#</a><cfif itCategories.hasNext()>, </cfif>
 							</cfloop>
 						</li>
 					</cfif>
